@@ -34,7 +34,7 @@ ExternalProject_Add(
 
 # Specify include dir
 ExternalProject_Get_Property(googletest source_dir)
-include_directories(${source_dir}/include)
+include_directories(${source_dir}/googletest/include)
 
 
 set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -Wextra -Wno-ignored-qualifiers -pedantic -O0 -g3 -fmessage-length=0 -MMD -MP -MF -MT -flto -Wl,--allow-multiple-definition")
