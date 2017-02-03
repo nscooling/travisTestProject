@@ -11,7 +11,7 @@ before_install:
 
 install:
 - if [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
-- if [ "$CXX" = "clang++" ] && [ "$TRAVIS_OS_NAME" = "linux" ]; then export CXX="clang" CC="clang-3.7"; fi
+- if [ "$CXX" = "clang++" ] && [ "$TRAVIS_OS_NAME" = "linux" ]; then export CXX="clang" CC="clang"; fi
 - echo ${PATH}
 - echo ${CXX}
 - ${CXX} --version
