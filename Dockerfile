@@ -1,7 +1,7 @@
 FROM gcc:latest
 RUN apt-get update -y
 RUN apt-get install cmake git -y
-WORKDIR /usr/src/myapp
+WORKDIR /usr/feabhas
 RUN git clone https://github.com/nscooling/travisTestProject.git; \
     cd travisTestProject; \
     mkdir build; \
@@ -9,4 +9,3 @@ RUN git clone https://github.com/nscooling/travisTestProject.git; \
     cmake ../; \
     make; \
     make test
-CMD ["/usr/src/myapp/travisTestProject/build/testProject"]
