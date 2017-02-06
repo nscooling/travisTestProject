@@ -73,3 +73,44 @@ TEST_F(BufferTest, test_initial_putget)
     ASSERT_EQ(true,buffer.isEmpty());
     ASSERT_EQ(1,data);
 }
+
+
+TEST_F(BufferTest, test_initial_buffer_full)
+{
+    for(int i = 0; i < 16; ++i) {
+        err = buffer.add(i);
+        ASSERT_EQ(err,Buffer::OK);
+    }
+    err = buffer.add(1);
+
+    ASSERT_EQ(err,Buffer::FULL);
+}
+
+TEST_F(BufferTest, test_initial_buffer_full_to_empty)
+{
+    int data;
+
+    for(int i = 0; i < 10; ++i) {
+        err = buffer.add(i);
+        ASSERT_EQ(err,Buffer::OK);
+    }
+    for(int i = 0; i < 8; ++i) {
+        err = buffer.get(data);
+        ASSERT_EQ(err,Buffer::OK);
+        ASSERT_EQ(i,data);
+    }
+    for(int i = 10; i < 18; ++i) {
+        err = buffer.add(i);
+        ASSERT_EQ(err,Buffer::OK);
+    }
+    for(int i = 8; i < 18; ++i) {
+        err = buffer.get(data);
+        ASSERT_EQ(err,Buffer::OK);
+        ASSERT_EQ(i,data);
+    }
+
+    err = buffer.get(data);
+    ASSERT_EQ(err,Buffer::EMPTY);
+
+
+}
