@@ -7,8 +7,13 @@
 //============================================================================
 
 #include "gtest/gtest.h"
+#include "Buffer.h"
 
-TEST(basic_test, test_will_always_pass)
+TEST(buffer_test, test_initial_condition)
 {
-	ASSERT_EQ(42,42);
+    Buffer buffer;
+    //Buffer::Error err;
+
+    ASSERT_EQ(true,buffer.isEmpty());
 }
+
