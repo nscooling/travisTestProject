@@ -9,37 +9,66 @@
 #include "gtest/gtest.h"
 #include "Buffer.h"
 
-TEST(buffer_test, test_initial_condition)
+class BufferTest : public ::testing::Test
 {
-    Buffer buffer;
-    //Buffer::Error err;
+protected:
+  BufferTest()
+  {
+    // Do set-up work for each test here.
+  }
 
+  virtual ~BufferTest()
+  {
+    // Do clean-up work that doesn't throw exceptions here.
+  }
+
+  // If the constructor and destructor are not enough for setting up
+  // and cleaning up each test, you can define the following methods:
+  //
+  virtual void SetUp() 
+  {
+    // Code here will be called immediately after the constructor (right
+    // before each test).
+  }
+
+  virtual void TearDown() 
+  {
+    // Code here will be called immediately after each test (right
+    // before the destructor).
+  }
+
+  // Objects declared here can be used by all tests in the test case
+  Buffer buffer;
+  Buffer::Error err;
+};
+
+TEST_F(BufferTest, test_initial_condition)
+{
     ASSERT_EQ(true,buffer.isEmpty());
 }
 
-TEST(buffer_test, test_initial_put)
+TEST_F(BufferTest, test_initial_put)
 {
-    Buffer buffer;
-    Buffer::Error err = buffer.add(1);
+    err = buffer.add(1);
 
     ASSERT_EQ(err,Buffer::OK);
     ASSERT_EQ(false,buffer.isEmpty());
 }
 
-TEST(buffer_test, test_initial_get)
+TEST_F(BufferTest, test_initial_get)
 {
-    Buffer buffer;
     int data;
-    Buffer::Error err = buffer.get(data);
+    err = buffer.get(data);
+
     ASSERT_EQ(err,Buffer::EMPTY);
 }
 
-TEST(buffer_test, test_initial_putget)
+TEST_F(BufferTest, test_initial_putget)
 {
-    Buffer buffer;
-    Buffer::Error err = buffer.add(1);
+    err = buffer.add(1);
     int data;
     err = buffer.get(data);
+
     ASSERT_EQ(err,Buffer::OK);
     ASSERT_EQ(true,buffer.isEmpty());
     ASSERT_EQ(1,data);
