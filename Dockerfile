@@ -8,5 +8,4 @@ RUN git clone https://github.com/nscooling/travisTestProject.git; \
     mkdir build; \
     cd build; \
     cmake ../; \
-    make; \
-    make test
+    make 
