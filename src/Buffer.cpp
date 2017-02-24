@@ -56,4 +56,13 @@ bool Buffer::isEmpty() const
   return (numItems == 0);
 }
 
+size_t Buffer::size() const
+{
+  return (numItems);
+}
+
+size_t Buffer::capacity() const
+{
+  return (sz - numItems);
+}
 

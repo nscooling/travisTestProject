@@ -32,6 +32,8 @@ public:
   Error add(const Elem_Ty& value);
   Error get(Elem_Ty& value);
   bool isEmpty() const;
+  size_t size() const;
+  size_t capacity() const;
 
 private:
   unsigned int read;

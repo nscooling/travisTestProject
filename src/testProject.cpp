@@ -40,7 +40,70 @@ protected:
   // Objects declared here can be used by all tests in the test case
   Buffer buffer;
   Buffer::Error err;
+  static constexpr int N = 16;
 };
+
+
+
+TEST_F(BufferTest, A1)
+{
+    err = buffer.add(1);
+
+    ASSERT_EQ(err,Buffer::OK);
+}
+
+TEST_F(BufferTest, A2)
+{
+    err = buffer.add(1);
+    err = buffer.add(2);
+    ASSERT_EQ(err,Buffer::OK);
+}
+
+TEST_F(BufferTest, A3)
+{
+    for(int i = 0; i < N; ++i) {
+        err = buffer.add(i);
+        ASSERT_EQ(err,Buffer::OK);
+    }
+    err = buffer.add(1);
+
+    ASSERT_EQ(err,Buffer::FULL);
+}
+
+
+
+TEST_F(BufferTest, G1)
+{
+    int data;
+    err = buffer.get(data);
+
+    ASSERT_EQ(err,Buffer::EMPTY);
+}
+
+TEST_F(BufferTest, G2)
+{
+  int value = 1;
+  buffer.add(value);
+  int data;
+  err = buffer.get(data);
+
+  ASSERT_EQ(err,Buffer::OK);
+  ASSERT_EQ(value,data);
+}
+
+TEST_F(BufferTest, G3)
+{
+    for(int i = 0; i < N; ++i) {
+        err = buffer.add(i);
+        ASSERT_EQ(err,Buffer::OK);
+    }
+  int data;
+  err = buffer.get(data);
+
+  ASSERT_EQ(err,Buffer::OK);
+}
+
+/*
 
 TEST_F(BufferTest, test_initial_condition)
 {
@@ -114,3 +177,5 @@ TEST_F(BufferTest, test_initial_buffer_full_to_empty)
 
 
 }
+
+*/
